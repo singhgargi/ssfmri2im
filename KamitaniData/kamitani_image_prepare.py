@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 from scipy.misc import imresize
 import config_file
 import os
+import sys
+sys.path.append(os.getcwd())
+import config_file 
 
 
 # Create Image dataset from Imagenet folders
