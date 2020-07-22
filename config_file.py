@@ -3,15 +3,16 @@ import os
 GPU_ID = "0"
 
 #####################  PATHS  ######################################
-imagenet_dir = "/home/romanb/data/image_net/"
-imagenet_wind_dir = os.path.join(imagenet_dir,"wind/")
-external_images_dir =  os.path.join(imagenet_dir,"images224/val/")
+imagenet_dir = "../data/"
+imagenet_wind_dir = os.path.join(imagenet_dir,"image_net/")
+external_images_dir =  os.path.join(imagenet_dir,"image_net/")
 
-project_dir = "/home/romanb/data/ssfmri2im/"
+project_dir = "../"
+image_size = 256
 images_npz = os.path.join(project_dir,"data/images_112.npz")
 kamitani_data_format = True
 kamitani_data_mat = os.path.join(project_dir,"data/Subject3.mat")
-caffenet_models_weights = os.path.join(project_dir,"models/imagenet-caffe-ref.mat")
+caffenet_models_weights = os.path.join(project_dir,"data/imagenet-caffe-ref.mat")
 results  = os.path.join(project_dir,"results/")
 
 
