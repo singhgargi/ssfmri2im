@@ -1,9 +1,9 @@
 import numpy as np
 
 import pandas as pd
-from imageio import imread
+from scipy.misc import imread
 import matplotlib.pyplot as plt
-from skimage.transform import resize
+from scipy.misc import resize
 import os
 import sys
 sys.path.append(os.getcwd())
