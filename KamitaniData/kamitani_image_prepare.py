@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from scipy.misc import imread
 import matplotlib.pyplot as plt
-from scipy.misc import resize
+from scipy.misc import imresize
 import os
 import sys
 sys.path.append(os.getcwd())
@@ -50,7 +50,7 @@ def image_prepare(img,size,interpolation):
     ud = int((r - trimSize) / 2)
     img = img[ud:min([(trimSize + 1), r - ud]) + ud, lr:min([(trimSize + 1), c - lr]) + lr]
 
-    img = resize(img, size=[size, size], interp=interpolation)
+    img = imresize(img, size=[size, size], interp=interpolation)
     if (np.ndim(img) == 3):
         out_img = img
     else:
