@@ -1,5 +1,5 @@
 import numpy as np
-
+print("BEGINNING")
 import pandas as pd
 from scipy.misc import imread
 import matplotlib.pyplot as plt
