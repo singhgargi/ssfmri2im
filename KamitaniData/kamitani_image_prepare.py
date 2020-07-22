@@ -20,7 +20,7 @@ def image_generate(imgnet_dir = config_file.imagenet_wind_dir,test_csv='./imageI
 
     for file in list(test_im[1]):
         folder = file.split('_')[0]
-        img = imread(imgnet_dir + folder + '/' + file)
+        img = imread(imgnet_dir + "images.jpg")
         test_images[count] = image_prepare(img, size,interpolation)
         count += 1
 
@@ -28,7 +28,7 @@ def image_generate(imgnet_dir = config_file.imagenet_wind_dir,test_csv='./imageI
 
     for file in list(train_im[1]):
         folder = file.split('_')[0]
-        img = imread(imgnet_dir + folder + '/' + file)
+        img = imread(imgnet_dir + "images.jpg")
         train_images[count] = image_prepare(img, size,interpolation)
         count += 1
     np.savez(out_file, train_images=train_images, test_images=test_images)
