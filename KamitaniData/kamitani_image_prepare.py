@@ -1,18 +1,18 @@
 import numpy as np
-print("BEGINNING")
+
 import pandas as pd
-from scipy.misc import imread
+from imageio import imread
 import matplotlib.pyplot as plt
-from scipy.misc import imresize
-import config_file
+from skimage.transform import resize
 import os
 import sys
 sys.path.append(os.getcwd())
 import config_file 
 
 
+
 # Create Image dataset from Imagenet folders
-def image_generate(imgnet_dir = config_file.imagenet_wind_dir,test_csv='./imageID_test.csv',train_csv='./imageID_training.csv',size = config_file.image_size,out_file= config_file.images_npz,interpolation = 'cubic'):
+def image_generate(imgnet_dir = config_file.imagenet_wind_dir,test_csv='./KamitaniData/imageID_test.csv',train_csv='./KamitaniData/imageID_training.csv',size = config_file.image_size,out_file= config_file.images_npz,interpolation = 'cubic'):
     test_im = pd.read_csv(test_csv,header=None)
     train_im = pd.read_csv(train_csv,header=None)
 
@@ -50,7 +50,7 @@ def image_prepare(img,size,interpolation):
     ud = int((r - trimSize) / 2)
     img = img[ud:min([(trimSize + 1), r - ud]) + ud, lr:min([(trimSize + 1), c - lr]) + lr]
 
-    img = imresize(img, size=[size, size], interp=interpolation)
+    img = resize(img, size=[size, size], interp=interpolation)
     if (np.ndim(img) == 3):
         out_img = img
     else:
