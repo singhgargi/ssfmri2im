@@ -16,7 +16,7 @@ caffenet_models_weights = os.path.join(project_dir,"data/imagenet-caffe-ref.mat"
 results  = os.path.join(project_dir,"results/")
 
 
-encoder_weights = os.path.join(project_dir,"models/encoder.hdf5")
+encoder_weights = os.path.join(project_dir,"encoder.hdf5")
 retrain_encoder = False
 decoder_weights = None
 
