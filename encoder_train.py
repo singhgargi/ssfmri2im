@@ -32,29 +32,29 @@ set_session(tf.Session(config=gpu_config))
 
 #################################################### data load ##########################################################
 
-# with open('../gdrive/My Drive/data100.p', 'rb') as fp:
-#     data = pickle.load(fp)
-# Y = data['responses']
-# Y_test_avg = data['responses_test']
-# NUM_VOXELS = Y.shape[1]
-# X = data['stimuli']
-# X_test = data['stimuli_test']
-# X_test_sorted = X_test
-
-handler = data_handler(matlab_file = config_file.kamitani_data_mat)
-Y,Y_test,Y_test_avg = handler.get_data(roi = 'ROI_VC')
-labels_train, labels = handler.get_labels()
-print("labels_train")
-print(np.shape(labels_train))
-print("labels")
-print(np.shape(labels))
+with open('../gdrive/My Drive/data100.p', 'rb') as fp:
+    data = pickle.load(fp)
+Y = data['responses']
+Y_test_avg = data['responses_test']
 NUM_VOXELS = Y.shape[1]
-file= np.load(config_file.images_npz)
-X = file['train_images']
-X_test = file['test_images']
-X= X[labels_train]
+X = data['stimuli']
+X_test = data['stimuli_test']
 X_test_sorted = X_test
-X_test = X_test[labels]
+
+# handler = data_handler(matlab_file = config_file.kamitani_data_mat)
+# Y,Y_test,Y_test_avg = handler.get_data(roi = 'ROI_VC')
+# labels_train, labels = handler.get_labels()
+# print("labels_train")
+# print(np.shape(labels_train))
+# print("labels")
+# print(np.shape(labels))
+# NUM_VOXELS = Y.shape[1]
+# file= np.load(config_file.images_npz)
+# X = file['train_images']
+# X_test = file['test_images']
+# X= X[labels_train]
+# X_test_sorted = X_test
+# X_test = X_test[labels]
 
 print("For Y")
 print(np.shape(Y))
