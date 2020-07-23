@@ -103,7 +103,7 @@ def combined_loss(y_true, y_pred):
     return feature_loss(y_true, y_pred)+  Tv_reg *total_variation_loss(y_pred)
 
 #################################################### learning param & schedule #########################################
-
+print("beginning learning param & schedule")
 
 initial_lrate = 0.001
 epochs_drop =  30.0
@@ -119,12 +119,13 @@ def step_decay(epoch):
    lrate = initial_lrate * math.pow(drop,
            math.floor((1+epoch)/epochs_drop))
    return lrate
-
+print("ending")
 ##################################################### model ############################################################
+print("beginning model")
 image_loss_.calc_norm_factors(X)
 
 encoder_weights = config_file.encoder_weights
-
+print("encoded weights")
 dec_param = decoder_param(NUM_VOXELS)
 enc_param = encoder_param(NUM_VOXELS)
 enc_param.drop_out = 0.25
