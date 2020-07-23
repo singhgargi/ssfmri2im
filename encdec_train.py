@@ -23,14 +23,14 @@ set_session(tf.Session(config=config))
 
 
 #################################################### data load #########################################################
-with open('../gdrive/My Drive/data100.p', 'rb') as fp:
+with open('/data112.p', 'rb') as fp:
     data = pickle.load(fp)
-Y = data['responses'][:1200,:]
+Y = data['responses']
 Y_test_avg = data['responses_test']
 Y_test = data['responses_test']
 labels = np.arange(Y_test.shape[0])
 NUM_VOXELS = Y.shape[1]
-X = data['stimuli'][:1200,:]
+X = data['stimuli']
 X_test = data['stimuli_test']
 X_test_avg = X_test
 
