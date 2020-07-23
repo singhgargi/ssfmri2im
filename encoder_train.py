@@ -14,6 +14,7 @@ from KamitaniData.kamitani_data_handler import kamitani_data_handler as data_han
 
 from Models.models import *
 import config_file
+import pickle
 
 if (os.path.exists(config_file.encoder_weights) and not config_file.retrain_encoder):
     print('pretrained encoder weights file exist')
