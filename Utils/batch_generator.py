@@ -69,7 +69,7 @@ class batch_generator_external_images(Sequence):
     :param batch_size: batch size
     :param ext_dir: directory containing images
     """
-    def __init__(self, img_size = 112, batch_size=16,ext_dir = config_file.external_images_dir):
+    def __init__(self, img_size = config_file.image_size, batch_size=16,ext_dir = config_file.external_images_dir):
         self.img_size = img_size
         self.batch_size = batch_size
 
@@ -147,7 +147,7 @@ class batch_generator_encdec(Sequence):
     """
 
 
-    def __init__(self, X, Y, Y_test, test_labels, batch_paired = 48, batch_unpaired = 16, max_shift_enc = 5, img_len = 112
+    def __init__(self, X, Y, Y_test, test_labels, batch_paired = 48, batch_unpaired = 16, max_shift_enc = 5, img_len = config_file.image_size
                  , frac_test = 3,ext_dir = config_file.external_images_dir,ignore_test_fmri_labels = None):
         self.num_samples = Y.shape[0]
         self.batch_size     = batch_paired+batch_unpaired
