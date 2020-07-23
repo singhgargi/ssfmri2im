@@ -123,7 +123,7 @@ print("ending")
 ##################################################### model ############################################################
 print("beginning model")
 image_loss_.calc_norm_factors(X)
-
+print("image_loss")
 encoder_weights = config_file.encoder_weights
 print("encoded weights")
 dec_param = decoder_param(NUM_VOXELS)
