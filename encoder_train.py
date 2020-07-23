@@ -32,7 +32,7 @@ set_session(tf.Session(config=gpu_config))
 
 #################################################### data load ##########################################################
 
-with open('data100.p', 'rb') as fp:
+with open('../gdrive/My Drive/data100.p', 'rb') as fp:
     data = pickle.load(fp)
 
 # handler = data_handler(matlab_file = config_file.kamitani_data_mat)
