@@ -23,7 +23,7 @@ set_session(tf.Session(config=config))
 
 
 #################################################### data load #########################################################
-with open('data100.p', 'rb') as fp:
+with open('../gdrive/My Drive/data100.p', 'rb') as fp:
     data = pickle.load(fp)
 Y = data['responses']
 Y_test_avg = data['responses_test']
