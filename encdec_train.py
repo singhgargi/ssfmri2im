@@ -1,6 +1,7 @@
 
 import os
 import config_file
+import pickle
 
 os.environ["CUDA_VISIBLE_DEVICES"] = config_file.GPU_ID
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -22,16 +23,22 @@ set_session(tf.Session(config=config))
 
 
 #################################################### data load #########################################################
-handler = data_handler(matlab_file = config_file.kamitani_data_mat)
-Y,Y_test,Y_test_avg = handler.get_data(roi = 'ROI_VC',imag_data = 0)
-labels_train, labels = handler.get_labels(imag_data = 0)
+with open('data112.p', 'rb') as fp:
+    data = pickle.load(fp)
+Y = data['responses']
+Y_test_avg = data['responses_test']
+NUM_VOXELS = Y.shape[1]
+# Y,Y_test,Y_test_avg = handler.get_data(roi = 'ROI_VC',imag_data = 0)
+# labels_train, labels = handler.get_labels(imag_data = 0)
+X = data['stimuli']
+X_test = data['stimuli_test']
+X_test_sorted = X_test
+# file= np.load(config_file.images_npz) #_56
+# X = file['train_images']
+# X_test_avg = file['test_images']
 
-file= np.load(config_file.images_npz) #_56
-X = file['train_images']
-X_test_avg = file['test_images']
-
-X= X[labels_train]
-X_test = X_test_avg[labels]
+# X= X[labels_train]
+# X_test = X_test_avg[labels]
 
 NUM_VOXELS = Y.shape[1]
 #################################################### losses ##########################################################
