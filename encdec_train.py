@@ -68,7 +68,7 @@ NUM_VOXELS = Y.shape[1]
 #################################################### losses ##########################################################
 
 # snr  = calc_snr(Y_test,Y_test_avg,labels)
-snr = np.ones((Y.shape[0],), dtype=int)
+snr = np.ones((Y.shape[1],), dtype=int)
 print("snr")
 print(np.shape(snr))
 SNR  = tf.constant(snr,shape = [1,len(snr)],dtype = tf.float32)
