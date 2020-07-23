@@ -56,6 +56,10 @@ print(np.shape(X_test))
 X= X[labels_train]
 X_test_sorted = X_test
 X_test = X_test[labels]
+print("X[labels_train]")
+print(np.shape(X))
+print("X_test_sorted")
+print(np.shape(X_test_sorted))
 
 
 #################################################### losses & schedule ##########################################################
