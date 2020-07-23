@@ -8,8 +8,8 @@ imagenet_wind_dir = os.path.join(imagenet_dir,"image_net/")
 external_images_dir =  os.path.join(imagenet_dir,"image_net/")
 
 project_dir = "../"
-image_size = 128
-images_npz = os.path.join(project_dir,"data/images_128.npz")
+image_size = 112
+images_npz = os.path.join(project_dir,"data/images_112.npz")
 kamitani_data_format = True
 kamitani_data_mat = os.path.join(project_dir,"data/Subject3.mat")
 caffenet_models_weights = os.path.join(project_dir,"data/imagenet-caffe-ref.mat")
