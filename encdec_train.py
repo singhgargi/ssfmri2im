@@ -69,9 +69,9 @@ print(np.shape(X_test))
 NUM_VOXELS = Y.shape[1]
 #################################################### losses ##########################################################
 
-snr  = calc_snr(Y_test,Y_test_avg,labels)
+# snr  = calc_snr(Y_test,Y_test_avg,labels)
 
-# snr = np.ones((Y.shape[1],), dtype=int)
+snr = np.ones((Y.shape[1],), dtype=int)
 
 print("snr")
 print(np.shape(snr))
