@@ -23,22 +23,41 @@ set_session(tf.Session(config=config))
 
 
 #################################################### data load #########################################################
-with open('data112.p', 'rb') as fp:
-    data = pickle.load(fp)
-Y = data['responses']
-Y_test_avg = data['responses_test']
-NUM_VOXELS = Y.shape[1]
-# Y,Y_test,Y_test_avg = handler.get_data(roi = 'ROI_VC',imag_data = 0)
-# labels_train, labels = handler.get_labels(imag_data = 0)
-X = data['stimuli']
-X_test = data['stimuli_test']
-X_test_sorted = X_test
-# file= np.load(config_file.images_npz) #_56
-# X = file['train_images']
-# X_test_avg = file['test_images']
+# with open('data112.p', 'rb') as fp:
+#     data = pickle.load(fp)
+# Y = data['responses']
+# Y_test_avg = data['responses_test']
+# NUM_VOXELS = Y.shape[1]
+# X = data['stimuli']
+# X_test = data['stimuli_test']
+# X_test_sorted = X_test
 
-# X= X[labels_train]
-# X_test = X_test_avg[labels]
+Y,Y_test,Y_test_avg = handler.get_data(roi = 'ROI_VC',imag_data = 0)
+labels_train, labels = handler.get_labels(imag_data = 0)
+print("For Y")
+print(np.shape(Y))
+print("For Y_test")
+print(np.shape(Y_test))
+print("For Y_test_avg")
+print(np.shape(Y_test_avg))
+print("labels_train")
+print(np.shape(labels_train))
+print("labels")
+print(np.shape(labels))
+
+file= np.load(config_file.images_npz) #_56
+X = file['train_images']
+X_test_avg = file['test_images']
+print("X")
+print(np.shape(X))
+print("X_test_avg")
+print(np.shape(X_test_avg))
+X= X[labels_train]
+X_test = X_test_avg[labels]
+print("X")
+print(np.shape(X))
+print("X_test")
+print(np.shape(X_test))
 
 NUM_VOXELS = Y.shape[1]
 #################################################### losses ##########################################################
