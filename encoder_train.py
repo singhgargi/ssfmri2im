@@ -32,45 +32,45 @@ set_session(tf.Session(config=gpu_config))
 
 #################################################### data load ##########################################################
 
-# with open('data112.p', 'rb') as fp:
-#     data = pickle.load(fp)
+with open('data112.p', 'rb') as fp:
+    data = pickle.load(fp)
 
-handler = data_handler(matlab_file = config_file.kamitani_data_mat)
-Y,Y_test,Y_test_avg = handler.get_data(roi = 'ROI_VC')
+# handler = data_handler(matlab_file = config_file.kamitani_data_mat)
+# Y,Y_test,Y_test_avg = handler.get_data(roi = 'ROI_VC')
 
-# Y = data['responses']
-# Y_test_avg = data['responses_test']
-# NUM_VOXELS = Y.shape[1]
+Y = data['responses']
+Y_test_avg = data['responses_test']
+NUM_VOXELS = Y.shape[1]
 
 print("For Y")
 print(np.shape(Y))
 print("For Y_test_avg")
 print(np.shape(Y_test_avg))
 
-labels_train, labels = handler.get_labels()
-print("labels_train")
-print(np.shape(labels_train))
-print("labels")
-print(np.shape(labels))
-NUM_VOXELS = Y.shape[1]
+# labels_train, labels = handler.get_labels()
+# print("labels_train")
+# print(np.shape(labels_train))
+# print("labels")
+# print(np.shape(labels))
+# NUM_VOXELS = Y.shape[1]
 
-file= np.load(config_file.images_npz)
-X = file['train_images']
-X_test = file['test_images']
+# file= np.load(config_file.images_npz)
+# X = file['train_images']
+# X_test = file['test_images']
 
-# X = data['stimuli']
-# X_test = data['stimuli_test']
+X = data['stimuli']
+X_test = data['stimuli_test']
 
 print("X")
 print(np.shape(X))
 print("X_test")
 print(np.shape(X_test))
 
-X= X[labels_train]
-X_test_sorted = X_test
-X_test = X_test[labels]
-
+# X= X[labels_train]
 # X_test_sorted = X_test
+# X_test = X_test[labels]
+
+X_test_sorted = X_test
 
 print("X[labels_train]")
 print(np.shape(X))
