@@ -32,7 +32,7 @@ labels = np.arange(Y_test.shape[0])
 NUM_VOXELS = Y.shape[1]
 X = data['stimuli']
 X_test = data['stimuli_test']
-X_test_sorted = X_test
+X_test_avg = X_test
 # handler = data_handler(matlab_file = config_file.kamitani_data_mat)
 # Y,Y_test,Y_test_avg = handler.get_data(roi = 'ROI_VC',imag_data = 0)
 # labels_train, labels = handler.get_labels(imag_data = 0)
