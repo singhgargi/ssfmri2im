@@ -32,7 +32,7 @@ set_session(tf.Session(config=gpu_config))
 
 #################################################### data load ##########################################################
 
-with open('data.p', 'rb') as fp:
+with open('data112.p', 'rb') as fp:
     data = pickle.load(fp)
 # handler = data_handler(matlab_file = config_file.kamitani_data_mat)
 # Y,Y_test,Y_test_avg = handler.get_data(roi = 'ROI_VC')
