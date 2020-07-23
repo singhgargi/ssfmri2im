@@ -32,7 +32,7 @@ set_session(tf.Session(config=gpu_config))
 
 #################################################### data load ##########################################################
 
-with open('../gdrive/My Drive/data100.p', 'rb') as fp:
+with open('/data112.p', 'rb') as fp:
     data = pickle.load(fp)
 Y = data['responses']
 Y_test_avg = data['responses_test']
