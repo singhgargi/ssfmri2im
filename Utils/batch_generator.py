@@ -101,7 +101,7 @@ class batch_generator_test_fmri(Sequence):
     :param frac: specify the random fraction of test fmri to average on (3 -> 1/3)
     :param ignore_labels: labels to be omitted from batches
     """
-    def __init__(self,Y,labels, batch_size=32, frac =3,ignore_labels = None):
+    def __init__(self,Y,labels, batch_size=32, frac =1,ignore_labels = None):
         self.Y = Y
         self.labels = labels
         self.frac = frac
@@ -148,7 +148,7 @@ class batch_generator_encdec(Sequence):
 
 
     def __init__(self, X, Y, Y_test, test_labels, batch_paired = 48, batch_unpaired = 16, max_shift_enc = 5, img_len = config_file.image_size
-                 , frac_test = 3,ext_dir = config_file.external_images_dir,ignore_test_fmri_labels = None):
+                 , frac_test = 1,ext_dir = config_file.external_images_dir,ignore_test_fmri_labels = None):
         self.num_samples = Y.shape[0]
         self.batch_size     = batch_paired+batch_unpaired
         self.gen_dec        = batch_generator_dec(X, Y, batch_size=batch_paired)
