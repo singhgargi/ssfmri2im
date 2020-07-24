@@ -30,8 +30,12 @@ def image_prepare(img,size,interpolation = 'cubic'):
     img = img[ud:min([(trimSize + 1), r - ud]) + ud, lr:min([(trimSize + 1), c - lr]) + lr]
 
     img = imresize(img, size=[size, size], interp=interpolation)
-    print("number of channels")
-    print(np.ndim(img))
+    print("min-max")
+    print(np.min(img))
+    print(np.max(img))
+    print("min-max after 255")
+    print(np.min(img/255.0))
+    print(np.max(img/255.0))
     if (np.ndim(img) == 3):
         out_img = img
     else:
