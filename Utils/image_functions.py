@@ -30,15 +30,23 @@ def image_prepare(img,size,interpolation = 'cubic'):
     img = img[ud:min([(trimSize + 1), r - ud]) + ud, lr:min([(trimSize + 1), c - lr]) + lr]
 
     img = imresize(img, size=[size, size], interp=interpolation)
-
+    
+    
     if (np.ndim(img) == 3):
         out_img = img
     else:
+        k = img/255.0
+        nsamples, nx,ny = k.shape
+        k = k.reshape(nsamples,nx*ny)
+        k = normalize(k)
+        nsamples, x = k.shape
+        k = k.reshape(nsamples,nx,ny)
+        img = k
         out_img[ :, :, 0] = img
         out_img[ :, :, 1] = img
         out_img[ :, :, 2] = img
 
-    return out_img/255.0
+    return out_img
 
 
 
