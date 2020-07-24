@@ -23,20 +23,22 @@ set_session(tf.Session(config=config))
 
 
 #################################################### data load #########################################################
-# with open('../gdrive/My Drive/data112.p', 'rb') as fp:
-#     data = pickle.load(fp)
-# Y = data['responses'][:1200,:]
-# Y_test_avg = data['responses_test']
-# Y_test = data['responses_test']
-# labels = np.arange(Y_test.shape[0])
-# NUM_VOXELS = Y.shape[1]
-# X = data['stimuli'][:1200,:]
-# X_test = data['stimuli_test']
-# X_test_avg = X_test
+with open('../gdrive/My Drive/data112.p', 'rb') as fp:
+    data = pickle.load(fp)
+Y = data['responses'][:1200,:]
+Y_test_avg = data['responses_test'][:50,:]
+Y_test = data['responses_test'][:50,:]
+Y_test = np.tile(Y_test,35)
+labels = np.arange(Y_test.shape[0])
+labels = np.tile(labels,35)
+NUM_VOXELS = Y.shape[1]
+X = data['stimuli'][:1200,:]
+X_test = data['stimuli_test']
+X_test_avg = X_test
 
-handler = data_handler(matlab_file = config_file.kamitani_data_mat)
-Y,Y_test,Y_test_avg = handler.get_data(roi = 'ROI_VC',imag_data = 0)
-labels_train, labels = handler.get_labels(imag_data = 0)
+# handler = data_handler(matlab_file = config_file.kamitani_data_mat)
+# Y,Y_test,Y_test_avg = handler.get_data(roi = 'ROI_VC',imag_data = 0)
+# labels_train, labels = handler.get_labels(imag_data = 0)
 
 print("For Y")
 print(np.shape(Y))
@@ -53,17 +55,17 @@ print(np.min(labels))
 print(np.max(labels))
 
 
-file= np.load(config_file.images_npz) #_56
-X = file['train_images']
-X_test_avg = file['test_images']
+# file= np.load(config_file.images_npz) #_56
+# X = file['train_images']
+# X_test_avg = file['test_images']
 
 print("X")
 print(np.shape(X))
 print("X_test_avg")
 print(np.shape(X_test_avg))
 
-X= X[labels_train]
-X_test = X_test_avg[labels]
+# X= X[labels_train]
+# X_test = X_test_avg[labels]
 
 print("X")
 print(np.shape(X))
@@ -73,9 +75,9 @@ print(np.shape(X_test))
 NUM_VOXELS = Y.shape[1]
 #################################################### losses ##########################################################
 
-snr  = calc_snr(Y_test,Y_test_avg,labels)
-
-# snr = np.ones((Y.shape[1],), dtype=int)
+# snr  = calc_snr(Y_test,Y_test_avg,labels)
+# snr = snr/snr.mean()
+snr = np.ones((Y.shape[1],), dtype=int)
 
 print("snr")
 print(np.shape(snr))
