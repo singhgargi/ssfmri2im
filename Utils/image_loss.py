@@ -42,6 +42,7 @@ class image_loss():
             self.calc_norm_factors(train_imgs)
 
     def calc_norm_factors(self,imgs,layers = ['block'+str(l)+'_conv2' for l in range(1,6)]):
+        print("calc_norm_factors")
         for layer in layers:
             embed = self.layer_embed[layer].predict(imgs,batch_size=64)
             self.norm_factor[layer] = np.mean(np.abs(embed).reshape(-1,embed.shape[3]),axis=0).reshape([1,1,1,-1])
@@ -51,6 +52,7 @@ class image_loss():
         self.norm_factor['pixel_l2'] = np.sqrt(np.mean(np.square(imgs).reshape(-1, imgs.shape[3]), axis=0).reshape([1, 1, 1, -1]))  # )np.sqrt(
 
     def normalize(self,y, layer='block1_conv2', l1=1):
+        print("normalize")
         if(not self.normalize):
             return y
         if(l1):
@@ -63,6 +65,7 @@ class image_loss():
 
 
     def vgg_loss(self,y_true, y_pred, layer='block1_conv2', l1=1):
+        print("vgg_loss")
         layer_embed = self.layer_embed[layer]
 
         y_true_e = layer_embed(y_true)
@@ -79,6 +82,7 @@ class image_loss():
 
 
     def vgg_in(self,x):
+        print("vgg_in")
         x = tf.scalar_mul(255.0, x)
         mean = tf.constant(MEAN_PIXELS, shape=[1, 1, 1, 3], dtype=tf.float32)
         x = tf.subtract(x, mean)
@@ -87,6 +91,7 @@ class image_loss():
 
 
     def pixel_loss(self, y_true, y_pred, l1=1):
+        print("pixel_loss")
         y_true_n = self.normalize(y_true, 'pixel', l1)
         y_pred_n = self.normalize(y_pred, 'pixel', l1)
         if (l1):
@@ -98,16 +103,19 @@ class image_loss():
 
 
 def total_variation_loss(x):
+    print("total_variation_loss")
     a = K.square(x[:, :-1, :-1, :] - x[:, 1:, : - 1, :])
     b = K.square(x[:, :-1, :-1, :] - x[:, : - 1, 1:, :])
     return K.mean(K.pow(a + b, 1.25),axis=[1,2,3])
 
 def total_variation_l1(x):
+    print("total_variation_l1")
     a  = K.abs(x[:, :-1, :-1, :] - x[:, 1:, : - 1, :])
     b  = K.abs(x[:, :-1, :-1, :] - x[:, : - 1, 1:, :])
     return K.mean(a + b ,axis=[1,2,3])
 
 def total_variation_l2(x):
+    print("total_variation_l2")
     a  = K.square(x[:, :-1, :-1, :] - x[:, 1:, : - 1, :])
     b  = K.square(x[:, :-1, :-1, :] - x[:, : - 1, 1:, :])
     return K.mean(a + b,axis=[1,2,3])
