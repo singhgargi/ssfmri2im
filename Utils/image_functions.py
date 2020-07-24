@@ -82,7 +82,7 @@ def image_collage(img_arrays, rows =10, border =5,save_file = None):
     num_arrays =len(img_arrays)
 
     cols = int(np.ceil(array_len/rows))
-    img_collage = np.ones([rows * (img_len + border) + border,num_arrays *cols * (img_len + border) , 3])
+    img_collage = np.ones([rows * (img_len + border) + border,num_arrays *cols * (img_len + border)])
 
     for ind in range(array_len):
         x = (ind % cols) * num_arrays
