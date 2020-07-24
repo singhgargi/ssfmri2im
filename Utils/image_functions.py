@@ -38,7 +38,7 @@ def image_prepare(img,size,interpolation = 'cubic'):
     else:
         k = img/255.0
         nx,ny = k.shape
-        k = k.reshape(nx*ny)
+        k = k.reshape(1,nx*ny)
         k = normalize(k)
         k = k.reshape(nx,ny)
         img = k
