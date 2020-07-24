@@ -23,20 +23,20 @@ set_session(tf.Session(config=config))
 
 
 #################################################### data load #########################################################
-with open('../gdrive/My Drive/data112.p', 'rb') as fp:
-    data = pickle.load(fp)
-Y = data['responses'][:1200,:]
-Y_test_avg = data['responses_test']
-Y_test = data['responses_test']
-labels = np.arange(Y_test.shape[0])
-NUM_VOXELS = Y.shape[1]
-X = data['stimuli'][:1200,:]
-X_test = data['stimuli_test']
-X_test_avg = X_test
+# with open('../gdrive/My Drive/data112.p', 'rb') as fp:
+#     data = pickle.load(fp)
+# Y = data['responses'][:1200,:]
+# Y_test_avg = data['responses_test']
+# Y_test = data['responses_test']
+# labels = np.arange(Y_test.shape[0])
+# NUM_VOXELS = Y.shape[1]
+# X = data['stimuli'][:1200,:]
+# X_test = data['stimuli_test']
+# X_test_avg = X_test
 
-# handler = data_handler(matlab_file = config_file.kamitani_data_mat)
-# Y,Y_test,Y_test_avg = handler.get_data(roi = 'ROI_VC',imag_data = 0)
-# labels_train, labels = handler.get_labels(imag_data = 0)
+handler = data_handler(matlab_file = config_file.kamitani_data_mat)
+Y,Y_test,Y_test_avg = handler.get_data(roi = 'ROI_VC',imag_data = 0)
+labels_train, labels = handler.get_labels(imag_data = 0)
 
 print("For Y")
 print(np.shape(Y))
@@ -49,17 +49,17 @@ print(np.shape(Y_test_avg))
 print("labels")
 print(np.shape(labels))
 
-# file= np.load(config_file.images_npz) #_56
-# X = file['train_images']
-# X_test_avg = file['test_images']
+file= np.load(config_file.images_npz) #_56
+X = file['train_images']
+X_test_avg = file['test_images']
 
 print("X")
 print(np.shape(X))
 print("X_test_avg")
 print(np.shape(X_test_avg))
 
-# X= X[labels_train]
-# X_test = X_test_avg[labels]
+X= X[labels_train]
+X_test = X_test_avg[labels]
 
 print("X")
 print(np.shape(X))
@@ -69,9 +69,9 @@ print(np.shape(X_test))
 NUM_VOXELS = Y.shape[1]
 #################################################### losses ##########################################################
 
-# snr  = calc_snr(Y_test,Y_test_avg,labels)
+snr  = calc_snr(Y_test,Y_test_avg,labels)
 
-snr = np.ones((Y.shape[1],), dtype=int)
+# snr = np.ones((Y.shape[1],), dtype=int)
 
 print("snr")
 print(np.shape(snr))
@@ -164,8 +164,8 @@ callback_list.append( log_image_collage_callback(Y_test_avg, X_test_avg, decoder
 callback_list.append( log_image_collage_callback(Y[0:50], X[0:50], decoder_model, dir = config_file.results+'/train_collge_ep/'))
 ##################################################### generators #######################################################
 
-loader_train = batch_generator_encdec(X, Y, Y_test, labels, batch_paired = 1, batch_unpaired = 1)
-loader_test = batch_generator_encdec(X_test_avg, Y_test_avg, Y_test, labels, batch_paired = 1, batch_unpaired = 0)
+loader_train = batch_generator_encdec(X, Y, Y_test, labels, batch_paired = 48, batch_unpaired = 16)
+loader_test = batch_generator_encdec(X_test_avg, Y_test_avg, Y_test, labels, batch_paired = 50, batch_unpaired = 0)
 ##################################################### fit & save #######################################################
 print("reached generator")
 model.fit_generator(loader_train, epochs=epochs, verbose=2,callbacks=callback_list,workers=1,use_multiprocessing=False) #epochs
