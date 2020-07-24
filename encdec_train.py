@@ -23,27 +23,27 @@ set_session(tf.Session(config=config))
 
 
 #################################################### data load #########################################################
-with open('../gdrive/My Drive/data112.p', 'rb') as fp:
-    data = pickle.load(fp)
-Y = data['responses'][:1200,:]
-Y_test_avg = data['responses_test'][:50,:]
-Y_test = data['responses_test'][:50,:]
-ysam = Y_test
-for i in range(34):
-    Y_test = np.concatenate((Y_test,ysam),axis=0)
-labels = np.arange(ysam.shape[0])
-labels = np.tile(labels,35)
-NUM_VOXELS = Y.shape[1]
-X = data['stimuli'][:1200,:]
-X_test = data['stimuli_test'][:50,:]
-X_test_avg = X_test
-xsam = X_test
-for i in range(34):
-    X_test = np.concatenate((X_test,xsam),axis=0)
+# with open('../gdrive/My Drive/data112.p', 'rb') as fp:
+#     data = pickle.load(fp)
+# Y = data['responses'][:1200,:]
+# Y_test_avg = data['responses_test'][:50,:]
+# Y_test = data['responses_test'][:50,:]
+# ysam = Y_test
+# for i in range(34):
+#     Y_test = np.concatenate((Y_test,ysam),axis=0)
+# labels = np.arange(ysam.shape[0])
+# labels = np.tile(labels,35)
+# NUM_VOXELS = Y.shape[1]
+# X = data['stimuli'][:1200,:]
+# X_test = data['stimuli_test'][:50,:]
+# X_test_avg = X_test
+# xsam = X_test
+# for i in range(34):
+#     X_test = np.concatenate((X_test,xsam),axis=0)
     
-# handler = data_handler(matlab_file = config_file.kamitani_data_mat)
-# Y,Y_test,Y_test_avg = handler.get_data(roi = 'ROI_VC',imag_data = 0)
-# labels_train, labels = handler.get_labels(imag_data = 0)
+handler = data_handler(matlab_file = config_file.kamitani_data_mat)
+Y,Y_test,Y_test_avg = handler.get_data(roi = 'ROI_VC',imag_data = 0)
+labels_train, labels = handler.get_labels(imag_data = 0)
 
 print("For Y")
 print(np.shape(Y))
@@ -60,17 +60,17 @@ print(np.min(labels))
 print(np.max(labels))
 
 
-# file= np.load(config_file.images_npz) #_56
-# X = file['train_images']
-# X_test_avg = file['test_images']
+file= np.load(config_file.images_npz) #_56
+X = file['train_images']
+X_test_avg = file['test_images']
 
 print("X")
 print(np.shape(X))
 print("X_test_avg")
 print(np.shape(X_test_avg))
 
-# X= X[labels_train]
-# X_test = X_test_avg[labels]
+X= X[labels_train]
+X_test = X_test_avg[labels]
 
 print("X")
 print(np.shape(X))
