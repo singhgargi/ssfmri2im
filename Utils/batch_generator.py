@@ -18,7 +18,7 @@ class batch_generator_dec(Sequence):
     :param batch_size: batch_size
     """
 
-    def __init__(self,  X, Y, batch_size =32):
+    def __init__(self,  X, Y, batch_size =8):
         self.indexes = {}
         self.batch_size = batch_size
         self.Y = Y
@@ -48,7 +48,7 @@ class batch_generator_enc(batch_generator_dec):
     :param max_shift: max random shift applied on images
     """
 
-    def __init__(self, X, Y, batch_size=32,max_shift = 5):
+    def __init__(self, X, Y, batch_size=8,max_shift = 5):
         super().__init__(X, Y, batch_size)
         self.max_shift = max_shift
 
@@ -69,7 +69,7 @@ class batch_generator_external_images(Sequence):
     :param batch_size: batch size
     :param ext_dir: directory containing images
     """
-    def __init__(self, img_size = config_file.image_size, batch_size=16,ext_dir = config_file.external_images_dir):
+    def __init__(self, img_size = config_file.image_size, batch_size=8,ext_dir = config_file.external_images_dir):
         self.img_size = img_size
         self.batch_size = batch_size
 
@@ -101,7 +101,7 @@ class batch_generator_test_fmri(Sequence):
     :param frac: specify the random fraction of test fmri to average on (3 -> 1/3)
     :param ignore_labels: labels to be omitted from batches
     """
-    def __init__(self,Y,labels, batch_size=32, frac =1,ignore_labels = None):
+    def __init__(self,Y,labels, batch_size=8, frac =1,ignore_labels = None):
         self.Y = Y
         self.labels = labels
         self.frac = frac
