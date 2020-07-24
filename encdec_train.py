@@ -28,8 +28,10 @@ with open('../gdrive/My Drive/data112.p', 'rb') as fp:
 Y = data['responses'][:1200,:]
 Y_test_avg = data['responses_test'][:50,:]
 Y_test = data['responses_test'][:50,:]
-Y_test = np.tile(Y_test,35)
-labels = np.arange(Y_test.shape[0])
+ysam = Y_test
+for i in range(34):
+    Y_test = np.concatenate((Y_test,ysam),axis=0)
+labels = np.arange(ysam.shape[0])
 labels = np.tile(labels,35)
 NUM_VOXELS = Y.shape[1]
 X = data['stimuli'][:1200,:]
