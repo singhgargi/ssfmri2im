@@ -172,7 +172,7 @@ if not os.path.exists(config_file.results):
     os.makedirs(config_file.results)
 
 callback_list.append( log_image_collage_callback(Y_test_avg, X_test_avg, decoder_model, dir = config_file.results+'/test_collge_ep/'))
-callback_list.append( log_image_collage_callback(Y[0:50], X[0:50], decoder_model, dir = config_file.results+'/train_collge_ep/'))
+callback_list.append( log_image_collage_callback(Y[0:5], X[0:5], decoder_model, dir = config_file.results+'/train_collge_ep/'))
 ##################################################### generators #######################################################
 
 loader_train = batch_generator_encdec(X, Y, Y_test, labels, batch_paired = 48, batch_unpaired = 16)
