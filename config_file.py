@@ -3,9 +3,9 @@ import os
 GPU_ID = "0"
 
 #####################  PATHS  ######################################
-imagenet_dir = "../datacoco/"
+imagenet_dir = "../"
 imagenet_wind_dir = os.path.join(imagenet_dir,"image_net/")
-external_images_dir =  os.path.join(imagenet_dir,"image_net/")
+external_images_dir =  os.path.join(imagenet_dir,"datacoco/")
 
 project_dir = "../"
 image_size = 112
