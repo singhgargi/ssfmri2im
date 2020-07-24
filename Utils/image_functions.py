@@ -89,7 +89,7 @@ def image_collage(img_arrays, rows =10, border =5,save_file = None):
         y = int(ind / cols)
 
         img_collage[border * (y + 1) + y * img_len:border * (y + 1) + (y + 1) * img_len, cols * (x + 1) + x * img_len:cols * (x + 1) +(x + num_arrays) * img_len]\
-            = np.concatenate([img_arrays[i][ind] for i in range(num_arrays) ],axis=1)
+            = np.concatenate([img_arrays[i][ind][:,:,0] for i in range(num_arrays) ],axis=1)
 
     if(save_file is not None):
         imsave(save_file,img_collage)
