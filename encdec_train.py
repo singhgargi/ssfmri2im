@@ -161,7 +161,7 @@ callback_list.append( log_image_collage_callback(Y[0:50], X[0:50], decoder_model
 loader_train = batch_generator_encdec(X, Y, Y_test, labels, batch_paired = 48, batch_unpaired = 16)
 loader_test = batch_generator_encdec(X_test_avg, Y_test_avg, Y_test, labels, batch_paired = 50, batch_unpaired = 0)
 ##################################################### fit & save #######################################################
-
+print("reached generator")
 model.fit_generator(loader_train, epochs=epochs, verbose=2,callbacks=callback_list,workers=5,use_multiprocessing=True) #epochs
 image_collage([X_test_avg,decoder_model.predict(Y_test_avg)], rows =10, border =5,save_file = config_file.results+'/collage.jpeg')
 save_images(decoder_model.predict(Y_test_avg),images_orig = X_test_avg ,folder=config_file.results+'/test/')
