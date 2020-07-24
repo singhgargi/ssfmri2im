@@ -36,11 +36,10 @@ def image_prepare(img,size,interpolation = 'cubic'):
         out_img = img
     else:
         k = img/255.0
-        nsamples, nx,ny = k.shape
-        k = k.reshape(nsamples,nx*ny)
+        nx,ny = k.shape
+        k = k.reshape(nx*ny)
         k = normalize(k)
-        nsamples, x = k.shape
-        k = k.reshape(nsamples,nx,ny)
+        k = k.reshape(nx,ny)
         img = k
         out_img[ :, :, 0] = img
         out_img[ :, :, 1] = img
