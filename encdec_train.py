@@ -80,15 +80,19 @@ print("SNR")
 print(type(SNR))
 
 def mse_vox(y_true, y_pred):
+    print("mse_vox")
     return K.mean(SNR*K.square(y_true-y_pred),axis=-1)
 
 def mae_vox(y_true, y_pred):
+    print("mae_vox")
     return K.mean(SNR*K.abs(y_true-y_pred),axis=-1)
 
 def combined_voxel_loss(y_true, y_pred):
+    print("combined_voxel_loss")
     return mae_vox(y_true, y_pred) +  0.1 *cosine_proximity(y_true, y_pred)
 
 def maelog_vox(y_true, y_pred):
+    print("maelog_vox")
     return K.mean(SNR*K.log(K.abs(y_true-y_pred)+1),axis=-1)
 
 
@@ -96,10 +100,12 @@ Tv_reg =1
 image_loss_ = image_loss()
 
 def feature_loss(y_true, y_pred ):
+    print("feature_loss")
     return 0.15*image_loss_.vgg_loss(y_true, y_pred,'block2_conv2')+0.7*image_loss_.vgg_loss(y_true, y_pred,'block1_conv2')+0.15*image_loss_.pixel_loss(y_true, y_pred)
     #return image_loss_.pixel_loss(y_true, y_pred)#image_loss_.vgg_loss(y_true, y_pred,'block1_conv2')
 
 def combined_loss(y_true, y_pred):
+    print("combined_loss")
     return feature_loss(y_true, y_pred)+  Tv_reg *total_variation_loss(y_pred)
 
 #################################################### learning param & schedule #########################################
