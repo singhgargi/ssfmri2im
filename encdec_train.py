@@ -48,6 +48,7 @@ print(np.shape(Y_test_avg))
 # print(np.shape(labels_train))
 print("labels")
 print(np.shape(labels))
+print(labels[:10])
 
 file= np.load(config_file.images_npz) #_56
 X = file['train_images']
