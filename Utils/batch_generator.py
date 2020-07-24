@@ -147,7 +147,7 @@ class batch_generator_encdec(Sequence):
     """
 
 
-    def __init__(self, X, Y, Y_test, test_labels, batch_paired = 8, batch_unpaired = 8, max_shift_enc = 5, img_len = config_file.image_size
+    def __init__(self, X, Y, Y_test, test_labels, batch_paired = 1, batch_unpaired = 1, max_shift_enc = 5, img_len = config_file.image_size
                  , frac_test = 1,ext_dir = config_file.external_images_dir,ignore_test_fmri_labels = None):
         print("X")
         print(np.shape(X))
