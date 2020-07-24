@@ -37,7 +37,10 @@ NUM_VOXELS = Y.shape[1]
 X = data['stimuli'][:1200,:]
 X_test = data['stimuli_test'][:50,:]
 X_test_avg = X_test
-
+xsam = X_test
+for i in range(34):
+    X_test = np.concatenate((X_test,xsam),axis=0)
+    
 # handler = data_handler(matlab_file = config_file.kamitani_data_mat)
 # Y,Y_test,Y_test_avg = handler.get_data(roi = 'ROI_VC',imag_data = 0)
 # labels_train, labels = handler.get_labels(imag_data = 0)
