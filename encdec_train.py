@@ -35,7 +35,7 @@ labels = np.arange(ysam.shape[0])
 labels = np.tile(labels,35)
 NUM_VOXELS = Y.shape[1]
 X = data['stimuli'][:1200,:]
-X_test = data['stimuli_test']
+X_test = data['stimuli_test'][:50,:]
 X_test_avg = X_test
 
 # handler = data_handler(matlab_file = config_file.kamitani_data_mat)
