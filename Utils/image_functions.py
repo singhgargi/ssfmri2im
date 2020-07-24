@@ -6,6 +6,7 @@ import numpy as np
 from scipy.misc import imresize, imsave
 from scipy.ndimage import shift
 import os
+from sklearn.preprocessing import normalize
 import scipy
 
 def image_prepare(img,size,interpolation = 'cubic'):
