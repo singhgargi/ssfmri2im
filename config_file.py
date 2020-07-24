@@ -3,7 +3,7 @@ import os
 GPU_ID = "0"
 
 #####################  PATHS  ######################################
-imagenet_dir = "../data/"
+imagenet_dir = "../datacoco/"
 imagenet_wind_dir = os.path.join(imagenet_dir,"image_net/")
 external_images_dir =  os.path.join(imagenet_dir,"image_net/")
 
@@ -13,10 +13,10 @@ images_npz = os.path.join(project_dir,"data/images_112.npz")
 kamitani_data_format = True
 kamitani_data_mat = os.path.join(project_dir,"data/Subject3.mat")
 caffenet_models_weights = os.path.join(project_dir,"data/imagenet-caffe-ref.mat")
-results  = os.path.join(project_dir,"gdrive/My Drive/results/")
+results  = os.path.join(project_dir,"gdrive/My Drive/resultscoco/")
 
 
-encoder_weights = os.path.join(project_dir,"encoderEarly.hdf5")
+encoder_weights = os.path.join(project_dir,"encoder.hdf5")
 retrain_encoder = False
 decoder_weights = None
 
