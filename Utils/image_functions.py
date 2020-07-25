@@ -105,6 +105,7 @@ def save_images(images,images_orig = None ,folder=''):
         if(images_orig is None):
             scipy.misc.imsave(folder+'img_'+str(i)+'.jpg',images[i])
         else:
-            img_concat = np.concatenate([images_orig[i][:,:,0],images[i][:,:,0]],axis=1)
-            img_concat = np.squeeze(img_concat)
+            # img_concat = np.concatenate([images_orig[i][:,:,0],images[i][:,:,0]],axis=1)
+            img_concat = images_orig[i][:,:,0]
+            # img_concat = np.squeeze(img_concat)
             scipy.misc.imsave(folder + 'img_' + str(i) + '.jpg', img_concat)
