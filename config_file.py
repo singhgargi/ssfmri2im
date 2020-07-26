@@ -13,7 +13,7 @@ images_npz = os.path.join(project_dir,"data/images_112.npz")
 kamitani_data_format = True
 kamitani_data_mat = os.path.join(project_dir,"data/Subject3.mat")
 caffenet_models_weights = os.path.join(project_dir,"data/imagenet-caffe-ref.mat")
-results  = os.path.join(project_dir,"gdrive/My Drive/resultscoconorm/")
+results  = os.path.join(project_dir,"gdrive/My Drive/resultscocosnrnormnorm/")
 
 
 encoder_weights = os.path.join(project_dir,"encoder.hdf5")
