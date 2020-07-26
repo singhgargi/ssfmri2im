@@ -30,11 +30,19 @@ def image_prepare(img,size,interpolation = 'cubic'):
     if (np.ndim(img) == 3):
         out_img = img
     else:
+        k = img/255.0
+        nx,ny = k.shape
+        k = k.reshape(1,nx*ny)
+        k = normalize(k)
+        x = k.shape
+        k = k.reshape(nx,ny)
+        k = (k-np.min(k))/(np.max(k)-np.min(k))
+        img = k        
         out_img[ :, :, 0] = img
         out_img[ :, :, 1] = img
         out_img[ :, :, 2] = img
 
-    return out_img/255.0
+    return out_img
 
 
 
