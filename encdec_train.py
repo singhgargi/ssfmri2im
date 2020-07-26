@@ -26,8 +26,8 @@ set_session(tf.Session(config=config))
 with open('../gdrive/My Drive/datanorm01112.p', 'rb') as fp:
     data = pickle.load(fp)
 Y = data['responses'][:1500,:]
-Y_test_avg = data['responses_test'][:50,:]
-Y_test = data['responses_test'][:50,:]
+Y_test_avg = data['responses_test']
+Y_test = data['responses_test']
 ysam = Y_test
 for i in range(34):
     Y_test = np.concatenate((Y_test,ysam),axis=0)
@@ -35,7 +35,7 @@ labels = np.arange(ysam.shape[0])
 labels = np.tile(labels,35)
 NUM_VOXELS = Y.shape[1]
 X = data['stimuli'][:1500,:]
-X_test = data['stimuli_test'][:50,:]
+X_test = data['stimuli_test']
 X_test_avg = X_test
 xsam = X_test
 for i in range(34):
