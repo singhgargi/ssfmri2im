@@ -87,7 +87,8 @@ def image_collage(img_arrays, rows =10, border =5,save_file = None):
             flag=1
             for i in range(num_arrays):
                 print("count ",i)
-                print(img_arrays[i][ind])         
+                print(img_arrays[i][ind].shape)
+                print(img_arrays[i][ind].count(1))         
                       
     if(save_file is not None):
         imsave(save_file,img_collage)
