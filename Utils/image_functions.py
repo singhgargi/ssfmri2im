@@ -6,19 +6,15 @@ import numpy as np
 from scipy.misc import imresize, imsave
 from scipy.ndimage import shift
 import os
-from sklearn.preprocessing import normalize
 import scipy
 
 def image_prepare(img,size,interpolation = 'cubic'):
     """
     Select central crop, resize and convert gray to 3 channel image
-
     :param img: image
     :param size: image output size
     :param interpolation: interpolation used in resize
-
     :return resized and croped image
-
     """
     out_img = np.zeros([size,size,3])
     s = img.shape
@@ -31,17 +27,9 @@ def image_prepare(img,size,interpolation = 'cubic'):
     img = img[ud:min([(trimSize + 1), r - ud]) + ud, lr:min([(trimSize + 1), c - lr]) + lr]
 
     img = imresize(img, size=[size, size], interp=interpolation)
-    
-    
     if (np.ndim(img) == 3):
         out_img = img
     else:
-#         k = img/255.0
-#         nx,ny = k.shape
-#         k = k.reshape(1,nx*ny)
-#         k = normalize(k)
-#         k = k.reshape(nx,ny)
-#         img = k
         out_img[ :, :, 0] = img
         out_img[ :, :, 1] = img
         out_img[ :, :, 2] = img
@@ -53,10 +41,8 @@ def image_prepare(img,size,interpolation = 'cubic'):
 def rand_shift(img,max_shift = 0 ):
     """
     randomly shifted image
-
     :param img: image
     :param max_shift: image output size
-
     :return randomly shifted image
     """
     x_shift, y_shift = np.random.randint(-max_shift, max_shift + 1, size=2)
@@ -68,12 +54,10 @@ def rand_shift(img,max_shift = 0 ):
 def image_collage(img_arrays, rows =10, border =5,save_file = None):
     """
     create image collage for arrays of images
-
     :param img_arrays: list of image arrays
     :param rows: number of rows in resulting iamge collage
     :param border: border between images
     :param save_file: location for resulting image
-
     :return image collage
     """
 
@@ -82,7 +66,7 @@ def image_collage(img_arrays, rows =10, border =5,save_file = None):
     num_arrays =len(img_arrays)
 
     cols = int(np.ceil(array_len/rows))
-    img_collage = np.ones([rows * (img_len + border) + border,num_arrays *cols * (img_len + border),3])
+    img_collage = np.ones([rows * (img_len + border) + border,num_arrays *cols * (img_len + border) , 3])
 
     for ind in range(array_len):
         x = (ind % cols) * num_arrays
@@ -105,8 +89,6 @@ def save_images(images,images_orig = None ,folder=''):
         if(images_orig is None):
             scipy.misc.imsave(folder+'img_'+str(i)+'.jpg',images[i])
         else:
-#             img_concat = np.concatenate([images_orig[i][:,:,0],images[i][:,:,0]],axis=1)
-#             img_concat = images_orig[i][:,:,0]
             img_concat = np.concatenate([images_orig[i],images[i]],axis=1)
             img_concat = np.squeeze(img_concat)
             scipy.misc.imsave(folder + 'img_' + str(i) + '.jpg', img_concat)
