@@ -46,7 +46,7 @@ def image_prepare(img,size,interpolation = 'cubic'):
         out_img[ :, :, 1] = img
         out_img[ :, :, 2] = img
 
-    return out_img
+    return out_img/255.0
 
 
 
