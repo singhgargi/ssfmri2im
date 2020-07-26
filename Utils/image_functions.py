@@ -76,14 +76,19 @@ def image_collage(img_arrays, rows =10, border =5,save_file = None):
 
     cols = int(np.ceil(array_len/rows))
     img_collage = np.ones([rows * (img_len + border) + border,num_arrays *cols * (img_len + border) , 3])
-
+    flag = 0
     for ind in range(array_len):
         x = (ind % cols) * num_arrays
         y = int(ind / cols)
 
         img_collage[border * (y + 1) + y * img_len:border * (y + 1) + (y + 1) * img_len, cols * (x + 1) + x * img_len:cols * (x + 1) +(x + num_arrays) * img_len]\
             = np.concatenate([img_arrays[i][ind] for i in range(num_arrays) ],axis=1)
-
+        if flag==0:
+            flag=1
+            for i in range(num_arrays):
+                print("count ",i)
+                print([img_arrays[i][ind])         
+                      
     if(save_file is not None):
         imsave(save_file,img_collage)
 
