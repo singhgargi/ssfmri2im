@@ -5,6 +5,7 @@ General image functions
 import numpy as np
 from scipy.misc import imresize, imsave
 from scipy.ndimage import shift
+from sklearn.preprocessing import normalize
 import os
 import scipy
 
