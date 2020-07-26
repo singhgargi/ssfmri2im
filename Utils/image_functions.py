@@ -36,12 +36,12 @@ def image_prepare(img,size,interpolation = 'cubic'):
     if (np.ndim(img) == 3):
         out_img = img
     else:
-        k = img/255.0
-        nx,ny = k.shape
-        k = k.reshape(1,nx*ny)
-        k = normalize(k)
-        k = k.reshape(nx,ny)
-        img = k
+#         k = img/255.0
+#         nx,ny = k.shape
+#         k = k.reshape(1,nx*ny)
+#         k = normalize(k)
+#         k = k.reshape(nx,ny)
+#         img = k
         out_img[ :, :, 0] = img
         out_img[ :, :, 1] = img
         out_img[ :, :, 2] = img
@@ -82,14 +82,14 @@ def image_collage(img_arrays, rows =10, border =5,save_file = None):
     num_arrays =len(img_arrays)
 
     cols = int(np.ceil(array_len/rows))
-    img_collage = np.ones([rows * (img_len + border) + border,num_arrays *cols * (img_len + border)])
+    img_collage = np.ones([rows * (img_len + border) + border,num_arrays *cols * (img_len + border),3])
 
     for ind in range(array_len):
         x = (ind % cols) * num_arrays
         y = int(ind / cols)
 
         img_collage[border * (y + 1) + y * img_len:border * (y + 1) + (y + 1) * img_len, cols * (x + 1) + x * img_len:cols * (x + 1) +(x + num_arrays) * img_len]\
-            = np.concatenate([img_arrays[i][ind][:,:,0] for i in range(num_arrays) ],axis=1)
+            = np.concatenate([img_arrays[i][ind] for i in range(num_arrays) ],axis=1)
 
     if(save_file is not None):
         imsave(save_file,img_collage)
@@ -105,7 +105,7 @@ def save_images(images,images_orig = None ,folder=''):
         if(images_orig is None):
             scipy.misc.imsave(folder+'img_'+str(i)+'.jpg',images[i])
         else:
-            # img_concat = np.concatenate([images_orig[i][:,:,0],images[i][:,:,0]],axis=1)
-            img_concat = images_orig[i][:,:,0]
-            # img_concat = np.squeeze(img_concat)
+            img_concat = np.concatenate([images_orig[i][:,:,0],images[i][:,:,0]],axis=1)
+#             img_concat = images_orig[i][:,:,0]
+            img_concat = np.squeeze(img_concat)
             scipy.misc.imsave(folder + 'img_' + str(i) + '.jpg', img_concat)
