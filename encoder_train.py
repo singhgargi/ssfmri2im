@@ -32,13 +32,13 @@ set_session(tf.Session(config=gpu_config))
 
 #################################################### data load ##########################################################
 
-with open('../gdrive/My Drive/data01v23ab112.p', 'rb') as fp:
+with open('../gdrive/My Drive/dataPCA99.p', 'rb') as fp:
     data = pickle.load(fp)
 Y = data['responses'][:1500,:]
-Y_test_avg = data['responses'][1500:1550,:]
+Y_test_avg = data['responses_test'][:50,:]
 NUM_VOXELS = Y.shape[1]
 X = data['stimuli'][:1500,:]
-X_test = data['stimuli'][1500:1550,:]
+X_test = data['stimuli_test'][:50,:]
 X_test_sorted = X_test
 
 # handler = data_handler(matlab_file = config_file.kamitani_data_mat)
