@@ -29,7 +29,7 @@ Y = data['responses'][:1500,:]
 Y_test_avg = data['responses_test'][:50,:]
 Y_test = data['responses_test'][:50,:]
 ysam = Y_test
-for i in range(34):
+for i in range(12):
     Y_test = np.concatenate((Y_test,ysam),axis=0)
 labels = np.arange(ysam.shape[0])
 labels = np.tile(labels,35)
@@ -38,7 +38,7 @@ X = data['stimuli'][:1500,:]
 X_test = data['stimuli_test'][:50,:]
 X_test_avg = X_test
 xsam = X_test
-for i in range(34):
+for i in range(12):
     X_test = np.concatenate((X_test,xsam),axis=0)
     
 # handler = data_handler(matlab_file = config_file.kamitani_data_mat)
