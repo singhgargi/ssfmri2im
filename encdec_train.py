@@ -32,7 +32,7 @@ ysam = Y_test
 for i in range(34):
     Y_test = np.concatenate((Y_test,ysam),axis=0)
 labels = np.arange(ysam.shape[0])
-labels = np.tile(labels,34)
+labels = np.tile(labels,35)
 NUM_VOXELS = Y.shape[1]
 X = data['stimuli'][:1500,:]
 X_test = data['stimuli_test'][:50,:]
