@@ -183,7 +183,7 @@ model.fit_generator(loader_train, epochs=epochs, verbose=2,callbacks=callback_li
 image_collage([X_test_avg,decoder_model.predict(Y_test_avg)], rows =10, border =5,save_file = config_file.results+'/collage.jpeg')
 save_images(decoder_model.predict(Y_test_avg),images_orig = X_test_avg ,folder=config_file.results+'/test/')
 save_images(decoder_model.predict(Y[0:50]),images_orig = X[0:50] ,folder=config_file.results+'/train/')
-
+save_results(decoder_model.predict(Y[0:50]),images_orig = X[0:50] ,folder=config_file.results+'/accuracyplots/')
 
 if(config_file.decoder_weights is not None):
     decoder_model.save_weights(config_file.decoder_weights)
