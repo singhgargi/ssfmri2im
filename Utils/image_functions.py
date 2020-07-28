@@ -137,6 +137,7 @@ def save_results(images,images_orig = None ,folder=''):
             gt_idx = i
             new = np.delete(np.arange(images.shape[0]),i)
             index = np.random.choice(new, j, replace=False) 
+	    index = np.append(index,i)
             res[j].append(calc_accuracy(images_orig[index],images[i],gt_idx))
     print("Total number of images used in 2-way",len(res[2]))
     print("2-way accuracy",res[2].count(True)/len(res[2]))
