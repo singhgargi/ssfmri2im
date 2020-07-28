@@ -8,6 +8,7 @@ from scipy.ndimage import shift
 from sklearn.preprocessing import normalize
 import os
 import scipy
+import pickle
 
 def image_prepare(img,size,interpolation = 'cubic'):
     """
@@ -100,3 +101,47 @@ def save_images(images,images_orig = None ,folder=''):
             img_concat = np.concatenate([images_orig[i],images[i]],axis=1)
             img_concat = np.squeeze(img_concat)
             scipy.misc.imsave(folder + 'img_' + str(i) + '.jpg', img_concat)
+            
+def calc_accuracy(original_imgs,reconstructed_img,gt_idx):
+	"""
+	Inputs:
+		original_imgs : numpy array of shape N,112,112,3 where N is the number of images. 
+						one of these images is the ground truth image.
+		gt_idx : index of the ground truth image. can take values from 0 to N-1.
+		reconstructed_img : numpy array of shape 112,112,3.
+	Output:
+		returns true if the ground truth image has the highest correlation with the reconstructed image  
+	"""
+	max_idx = 0
+	max_corr = -2
+	N = original_imgs.shape[0]
+	for i in range(N):
+		corr = scipy.stats.pearsonr(original_imgs[i].reshape(-1),reconstructed_img.reshape(-1))
+		if corr > max_corr :
+			max_corr = corr
+			max_idx = i
+	if(max_idx==gt_idx):
+		return True
+	else:
+		return False
+            
+def save_results(images,images_orig = None ,folder=''):
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+    res = {2:[],5:[],10:[]}
+    for i in range(images.shape[0]):
+        for j in [2,5,10]:
+            gt_idx = i
+            new = np.delete(images.shape[0],i)
+            index = np.random.choice(new, j, replace=False) 
+            res[j].append(calc_accuracy(images_orig[index],images[i],gt_idx))
+    print("Total number of images used in 2-way",len(res[2]))
+    print("2-way accuracy",res[2].count(True)/len(res[2]))
+    print("Total number of images used in 5-way",len(res[5]))
+    print("5-way accuracy",res[5].count(True)/len(res[5]))
+    print("Total number of images used in 10-way",len(res[10]))
+    print("10-way accuracy",res[10].count(True)/len(res[10]))
+    with open(folder+'results.p', 'wb') as fp:
+        pickle.dump(res, fp, protocol=pickle.HIGHEST_PROTOCOL)
+            
+        
