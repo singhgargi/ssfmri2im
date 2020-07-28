@@ -122,6 +122,8 @@ def calc_accuracy(original_imgs,reconstructed_img,gt_idx):
 			max_corr = corr
 			max_idx = i
 	if(max_idx==gt_idx):
+		print("image index",gt_idx)
+		print("correlation",max_corr)
 		return True
 	else:
 		return False
