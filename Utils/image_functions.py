@@ -117,6 +117,7 @@ def calc_accuracy(original_imgs,reconstructed_img,gt_idx):
 	N = original_imgs.shape[0]
 	for i in range(N):
 		corr = scipy.stats.pearsonr(original_imgs[i].reshape(-1),reconstructed_img.reshape(-1))
+		corr = corr[0]
 		if corr > max_corr :
 			max_corr = corr
 			max_idx = i
