@@ -122,7 +122,7 @@ def calc_accuracy(original_imgs,reconstructed_img,gt_idx):
 			max_corr = corr
 			max_idx = i
 	if(max_idx==gt_idx):
-		print("image index",gt_idx)
+		print("n",N)
 		print("correlation",max_corr)
 		return True
 	else:
@@ -134,10 +134,11 @@ def save_results(images,images_orig = None ,folder=''):
     res = {2:[],5:[],10:[]}
     for i in range(images.shape[0]):
         for j in [2,5,10]:
-            gt_idx = i
+            gt_idx = j-1
             new = np.delete(np.arange(images.shape[0]),i)
-            index = np.random.choice(new, j, replace=False) 
+            index = np.random.choice(new, j-1, replace=False) 
 	    index = np.append(index,i)
+            print("image index",i)
             res[j].append(calc_accuracy(images_orig[index],images[i],gt_idx))
     print("Total number of images used in 2-way",len(res[2]))
     print("2-way accuracy",res[2].count(True)/len(res[2]))
