@@ -113,7 +113,7 @@ def calc_accuracy(original_imgs,reconstructed_img,gt_idx):
 		returns true if the ground truth image has the highest correlation with the reconstructed image  
 	"""
 	max_idx = 0
-	max_corr = -2
+	max_corr = -50
 	N = original_imgs.shape[0]
 	for i in range(N):
 		corr = scipy.stats.pearsonr(original_imgs[i].reshape(-1),reconstructed_img.reshape(-1))
