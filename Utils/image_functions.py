@@ -138,6 +138,7 @@ def save_results(images,images_orig = None ,folder=''):
 			new = np.delete(np.arange(images.shape[0]),i)
 			index = np.random.choice(new, j-1, replace=False)
 			index = np.append(index,i)
+			print("indices array",index)
 			print("image index",i)
 			res[j].append(calc_accuracy(images_orig[index],images[i],gt_idx))
 	print("Total number of images used in 2-way",len(res[2]))
