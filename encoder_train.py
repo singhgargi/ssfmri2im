@@ -125,5 +125,5 @@ test_generator = batch_generator_enc(X_test_sorted, Y_test_avg, batch_size=50,ma
 vision_model.fit_generator(train_generator, epochs=80,validation_data=test_generator ,verbose=2,use_multiprocessing=False,callbacks=callbacks) #, steps_per_epoch=1200//64 , validation_steps=1
 if(config_file.encoder_weights is not None):
     vision_model.save_weights(config_file.encoder_weights)
-save_results(vision_model.predict(X_test_sorted),images_orig = Y_test_avg ,folder=config_file.results+'/accuracyenc/')
+save_results_enc(vision_model.predict(X_test_sorted),images_orig = Y_test_avg ,folder=config_file.results+'/accuracyenc/')
 
