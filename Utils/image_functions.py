@@ -154,6 +154,12 @@ def save_results_enc(images,images_orig = None ,folder=''):
 	Res5 = sum(Res[5])/len(Res[5])
 	Res10 = sum(Res[10])/len(Res[10])
 	Res120 = sum(Res[120])/len(Res[120])
+	reso = []
+	for i in range(images.shape[0]):
+		new = np.delete(np.arange(images.shape[0]),i)
+		index = np.append(new,i)
+		reso.append(calc_accuracy(images[index],images_orig[i],119))
+	print("kay? accuracy:",reso.count(True)/len(reso))
 	print("2-way accuracy",Res2)
 	print("5-way accuracy",Res5)
 	print("10-way accuracy",Res10)
