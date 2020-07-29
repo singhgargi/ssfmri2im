@@ -118,12 +118,13 @@ def calc_accuracy(original_imgs,reconstructed_img,gt_idx):
 	for i in range(N):
 		corr = scipy.stats.pearsonr(original_imgs[i].reshape(-1),reconstructed_img.reshape(-1))
 		corr = corr[0]
+		print("correlation ",corr)
 		if corr > max_corr :
 			max_corr = corr
 			max_idx = i
 	if(max_idx==gt_idx):
 		print("n",N)
-		print("correlation",max_corr)
+		print("max correlation",max_corr)
 		return True
 	else:
 		return False
