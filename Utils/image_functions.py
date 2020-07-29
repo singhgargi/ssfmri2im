@@ -127,28 +127,36 @@ def calc_accuracy(original_imgs,reconstructed_img,gt_idx):
 		print("max correlation",max_corr)
 		return True
 	else:
+		print("n",N)
+		print("false")
 		return False
             
 def save_results(images,images_orig = None ,folder=''):
 	if not os.path.exists(folder):
 		os.makedirs(folder)
-	res = {2:[],5:[],10:[]}
-	for i in range(images.shape[0]):
-		for j in [2,5,10]:
-			gt_idx = j-1
-			new = np.delete(np.arange(images.shape[0]),i)
-			index = np.random.choice(new, j-1, replace=False)
-			index = np.append(index,i)
-			print("indices array",index)
-			print("image index",i)
-			res[j].append(calc_accuracy(images_orig[index],images[i],gt_idx))
-	print("Total number of images used in 2-way",len(res[2]))
-	print("2-way accuracy",res[2].count(True)/len(res[2]))
-	print("Total number of images used in 5-way",len(res[5]))
-	print("5-way accuracy",res[5].count(True)/len(res[5]))
-	print("Total number of images used in 10-way",len(res[10]))
-	print("10-way accuracy",res[10].count(True)/len(res[10]))
+	Res = {2:[],5:[],10:[]}
+	for it in range(10):
+		res = {2:[],5:[],10:[]}
+		for i in range(images.shape[0]):
+			for j in [2,5,10]:
+				gt_idx = j-1
+				new = np.delete(np.arange(images.shape[0]),i)
+				index = np.random.choice(new, j-1, replace=False)
+				index = np.append(index,i)
+				print("indices array",index)
+				print("image index",i)
+				res[j].append(calc_accuracy(images_orig[index],images[i],gt_idx))
+				
+		Res[2].append(res[2].count(True)/len(res[2]))	
+		Res[5].append(res[5].count(True)/len(res[5]))
+		Res[10].append(res[10].count(True)/len(res[10]))
+	Res2 = sum(Res[2])/len(Res[2])
+	Res5 = sum(Res[5])/len(Res[5])
+	Res10 = sum(Res[10])/len(Res[10])
+	print("2-way accuracy",Res2)
+	print("5-way accuracy",Res5)
+	print("10-way accuracy",Res10)
 	with open(folder+'results.p', 'wb') as fp:
-		pickle.dump(res, fp, protocol=pickle.HIGHEST_PROTOCOL)
+		pickle.dump(Res, fp, protocol=pickle.HIGHEST_PROTOCOL)
             
         
