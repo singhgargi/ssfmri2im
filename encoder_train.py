@@ -34,10 +34,10 @@ set_session(tf.Session(config=gpu_config))
 
 with open('../gdrive/My Drive/data01v1v2v3v3av3b.p', 'rb') as fp:
     data = pickle.load(fp)
-Y = data['responses'][:1200,:]
+Y = data['responses'][:1500,:]
 Y_test_avg = data['responses_test'][:50,:]
 NUM_VOXELS = Y.shape[1]
-X = data['stimuli'][:1200,:]
+X = data['stimuli'][:1500,:]
 X_test = data['stimuli_test'][:50,:]
 X_test_sorted = X_test
 
