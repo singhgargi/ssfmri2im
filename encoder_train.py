@@ -5,6 +5,7 @@ from keras.losses import mean_squared_error, cosine_proximity
 from keras.optimizers import SGD
 
 from Utils.batch_generator import *
+from Utils.image_functions import *
 
 from Utils.misc import download_network_weights
 import sys
