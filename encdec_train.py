@@ -23,19 +23,19 @@ set_session(tf.Session(config=config))
 
 
 #################################################### data load #########################################################
-with open('../gdrive/My Drive/dataPCA50.p', 'rb') as fp:
+with open('../gdrive/My Drive/datav1v2v3PCA50.p', 'rb') as fp:
     data = pickle.load(fp)
-Y = data['responses'][:1200,:]
-Y_test_avg = data['responses_test'][:50,:]
-Y_test = data['responses_test'][:50,:]
+Y = data['responses']
+Y_test_avg = data['responses_test']
+Y_test = data['responses_test']
 ysam = Y_test
 for i in range(34):
     Y_test = np.concatenate((Y_test,ysam),axis=0)
 labels = np.arange(ysam.shape[0])
 labels = np.tile(labels,35)
 NUM_VOXELS = Y.shape[1]
-X = data['stimuli'][:1200,:]
-X_test = data['stimuli_test'][:50,:]
+X = data['stimuli']
+X_test = data['stimuli_test']
 X_test_avg = X_test
 xsam = X_test
 for i in range(34):
